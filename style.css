@@ -1,0 +1,942 @@
+/* =========================================================
+   VARIÁVEIS GLOBAIS — paleta e tokens do site
+   ========================================================= */
+:root{
+  --ink:#1B2A3D;           /* azul-noite profundo */
+  --candle:#C89B3C;        /* dourado de vela */
+  --candle-soft:#E8CE8F;   /* dourado suave */
+  --sage:#7C9885;          /* verde-sálvia (fraternidade/natureza) */
+  --ivory:#F6F2E9;         /* creme quente */
+  --mist-dark: rgba(15,22,32,0.86);
+  --mist-mid: rgba(15,22,32,0.42);
+  --mist-clear: rgba(15,22,32,0.02);
+}
+
+*{box-sizing:border-box; margin:0; padding:0;}
+
+html,body{
+  width:100%;
+  height:100%;
+  background:var(--ink);
+}
+
+body{
+  font-family:'Work Sans', sans-serif;
+  color:var(--ivory);
+}
+
+/* =========================================================
+   BANNER PRINCIPAL
+   ========================================================= */
+.hero{
+  position:relative;
+  min-height:100vh;
+  width:100%;
+  display:flex;
+  flex-direction:column;
+  justify-content:flex-end;
+  overflow:hidden;
+}
+
+.hero__img{
+  position:absolute;
+  inset:0;
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  object-position:center 60%;
+  filter:saturate(0.92) contrast(1.02);
+}
+
+.hero__scrim{
+  position:absolute;
+  inset:0;
+  background:
+    linear-gradient(180deg, var(--mist-mid) 0%, var(--mist-clear) 34%, var(--mist-mid) 58%, var(--mist-dark) 100%),
+    linear-gradient(90deg, var(--mist-dark) 0%, rgba(15,22,32,0.15) 55%, rgba(15,22,32,0.35) 100%);
+}
+
+/* elemento de assinatura: brilho de vela "respirando" */
+.glow{
+  position:absolute;
+  top:14%;
+  left:50%;
+  width:340px;
+  height:340px;
+  transform:translateX(-50%);
+  border-radius:50%;
+  background:radial-gradient(circle, rgba(232,206,143,0.30) 0%, rgba(232,206,143,0.08) 45%, rgba(232,206,143,0) 72%);
+  pointer-events:none;
+  animation:breathe 7s ease-in-out infinite;
+}
+
+@keyframes breathe{
+  0%,100%{ opacity:0.55; transform:translateX(-50%) scale(1); }
+  50%{ opacity:1; transform:translateX(-50%) scale(1.12); }
+}
+
+.nav{
+  position:relative;
+  z-index:3;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  padding:28px clamp(20px, 6vw, 72px) 0;
+}
+
+.nav__mark{
+  display:flex;
+  align-items:center;
+  gap:10px;
+  font-family:'Fraunces', serif;
+  font-size:1.05rem;
+  font-weight:500;
+  letter-spacing:0.02em;
+}
+
+.nav__flame{
+  width:9px; height:9px;
+  border-radius:50%;
+  background:var(--candle-soft);
+  box-shadow:0 0 12px 3px rgba(232,206,143,0.65);
+}
+
+.nav__links{
+  display:none;
+  gap:clamp(16px, 2.4vw, 34px);
+  font-size:0.88rem;
+  letter-spacing:0.03em;
+  color:rgba(246,242,233,0.82);
+}
+
+@media(min-width:760px){
+  .nav__links{ display:flex; }
+}
+
+.nav__links a{
+  color:inherit;
+  text-decoration:none;
+  position:relative;
+  padding-bottom:4px;
+}
+.nav__links a::after{
+  content:"";
+  position:absolute;
+  left:0; bottom:0;
+  width:0%; height:1px;
+  background:var(--candle-soft);
+  transition:width 0.3s ease;
+}
+.nav__links a:hover::after{ width:100%; }
+
+.hero__content{
+  position:relative;
+  z-index:2;
+  padding:0 clamp(20px, 6vw, 72px) clamp(52px, 8vw, 96px);
+  max-width:920px;
+}
+
+.eyebrow{
+  display:flex;
+  align-items:center;
+  gap:12px;
+  font-size:0.78rem;
+  letter-spacing:0.22em;
+  text-transform:uppercase;
+  color:var(--candle-soft);
+  margin-bottom:22px;
+}
+
+.eyebrow::before{
+  content:"";
+  width:34px;
+  height:1px;
+  background:var(--candle-soft);
+  opacity:0.7;
+}
+
+h1{
+  font-family:'Fraunces', serif;
+  font-weight:400;
+  font-optical-sizing:auto;
+  font-size:clamp(2.3rem, 5.4vw, 4.1rem);
+  line-height:1.08;
+  letter-spacing:-0.01em;
+  color:#FFFDF8;
+  max-width:15ch;
+}
+
+h1 em{
+  font-style:italic;
+  font-weight:300;
+  color:var(--candle-soft);
+}
+
+.sub{
+  margin-top:24px;
+  font-size:clamp(1rem, 1.5vw, 1.18rem);
+  line-height:1.65;
+  color:rgba(246,242,233,0.88);
+  max-width:56ch;
+  font-weight:300;
+}
+
+.cta-row{
+  margin-top:38px;
+  display:flex;
+  flex-wrap:wrap;
+  gap:14px;
+}
+
+.btn{
+  display:inline-flex;
+  align-items:center;
+  gap:8px;
+  padding:14px 26px;
+  border-radius:999px;
+  font-size:0.92rem;
+  letter-spacing:0.01em;
+  text-decoration:none;
+  transition:all 0.25s ease;
+  white-space:nowrap;
+}
+
+.btn--primary{
+  background:var(--candle-soft);
+  color:var(--ink);
+  font-weight:500;
+  box-shadow:0 8px 24px -8px rgba(200,155,60,0.55);
+}
+.btn--primary:hover{
+  background:#fff;
+  transform:translateY(-1px);
+}
+
+.btn--ghost{
+  border:1px solid rgba(246,242,233,0.45);
+  color:var(--ivory);
+  font-weight:400;
+  background:rgba(246,242,233,0.04);
+  backdrop-filter:blur(2px);
+}
+.btn--ghost:hover{
+  border-color:var(--candle-soft);
+  color:var(--candle-soft);
+  transform:translateY(-1px);
+}
+
+.btn__arrow{ font-size:1rem; transition:transform 0.25s ease; }
+.btn:hover .btn__arrow{ transform:translateX(3px); }
+
+.scroll-cue{
+  position:absolute;
+  right:clamp(20px, 6vw, 72px);
+  bottom:clamp(28px, 5vw, 48px);
+  z-index:2;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  gap:10px;
+  color:rgba(246,242,233,0.55);
+  font-size:0.72rem;
+  letter-spacing:0.18em;
+  text-transform:uppercase;
+}
+.scroll-cue__line{
+  width:1px;
+  height:38px;
+  background:linear-gradient(180deg, rgba(246,242,233,0.7), transparent);
+  animation:pulse-line 2.4s ease-in-out infinite;
+}
+@keyframes pulse-line{
+  0%,100%{ opacity:0.35; }
+  50%{ opacity:1; }
+}
+
+@media(max-width:600px){
+  .scroll-cue{ display:none; }
+  .cta-row{ flex-direction:column; align-items:flex-start; }
+  .btn{ width:100%; justify-content:center; }
+}
+
+@media (prefers-reduced-motion: reduce){
+  .glow, .scroll-cue__line{ animation:none; }
+}
+
+/* as próximas seções (Sobre o Centro, Programação Semanal, etc.)
+   entram aqui embaixo, cada uma com seu próprio bloco de comentário */
+
+
+   /* =========================================================
+   SOBRE O CENTRO
+   ========================================================= */
+.sobre{
+  background:var(--ivory);
+  color:var(--ink);
+  padding:clamp(64px, 10vw, 128px) clamp(20px, 6vw, 72px);
+  display:grid;
+  grid-template-columns:1fr;
+  gap:56px;
+  align-items:center;
+}
+
+@media(min-width:940px){
+  .sobre{
+    grid-template-columns:1fr 1fr;
+    gap:clamp(48px, 6vw, 96px);
+  }
+}
+
+.eyebrow--dark{
+  color:var(--candle);
+}
+.eyebrow--dark::before{
+  background:var(--candle);
+}
+
+.sobre__texto h2{
+  font-family:'Fraunces', serif;
+  font-weight:400;
+  font-size:clamp(1.9rem, 3.4vw, 2.7rem);
+  line-height:1.18;
+  color:var(--ink);
+  margin:18px 0 26px;
+  max-width:16ch;
+}
+
+.sobre__texto p{
+  font-size:1.02rem;
+  line-height:1.75;
+  color:rgba(27,42,61,0.78);
+  font-weight:300;
+  max-width:52ch;
+}
+
+.sobre__texto p + p{
+  margin-top:18px;
+}
+
+/* colagem assimétrica de fotos — a foto principal ancora,
+   as duas menores se sobrepõem sutilmente, como um quadro de memórias */
+.sobre__fotos{
+  position:relative;
+  min-height:420px;
+}
+
+.foto{
+  position:absolute;
+  object-fit:cover;
+  border-radius:6px;
+  box-shadow:0 24px 48px -20px rgba(27,42,61,0.35);
+}
+
+.foto--principal{
+  width:78%;
+  height:360px;
+  top:0;
+  left:0;
+  z-index:1;
+}
+
+.foto--pequena{
+  width:48%;
+  height:200px;
+  border:6px solid var(--ivory);
+  z-index:2;
+}
+
+.foto--um{
+  bottom:-8%;
+  right:0;
+}
+
+.foto--dois{
+  display:none;
+}
+
+@media(min-width:640px){
+  .foto--dois{
+    display:block;
+    width:34%;
+    height:170px;
+    top:52%;
+    left:-4%;
+    z-index:3;
+  }
+  .foto--um{
+    width:42%;
+    height:190px;
+  }
+}
+
+@media(max-width:939px){
+  .sobre__fotos{ min-height:380px; margin-top:8px; }
+}
+
+
+/* =========================================================
+   PROGRAMAÇÃO SEMANAL
+   ========================================================= */
+.programacao{
+  background:var(--ink);
+  color:var(--ivory);
+  padding:clamp(64px, 10vw, 128px) clamp(20px, 6vw, 72px);
+}
+
+.programacao__cabecalho{
+  margin-bottom:clamp(40px, 6vw, 64px);
+}
+
+.programacao__cabecalho h2{
+  font-family:'Fraunces', serif;
+  font-weight:400;
+  font-size:clamp(1.9rem, 3.4vw, 2.7rem);
+  margin-top:14px;
+  color:#FFFDF8;
+}
+
+.programacao__grade{
+  display:grid;
+  grid-template-columns:1fr;
+  gap:1px;
+  background:rgba(246,242,233,0.14);
+  border:1px solid rgba(246,242,233,0.14);
+}
+
+@media(min-width:760px){
+  .programacao__grade{
+    grid-template-columns:repeat(4, 1fr);
+  }
+}
+
+.dia{
+  background:var(--ink);
+  padding:32px 26px;
+  display:flex;
+  flex-direction:column;
+  transition:background 0.3s ease;
+}
+
+.dia:hover{
+  background:#212F42;
+}
+
+.dia__nome{
+  font-family:'Fraunces', serif;
+  font-size:1.2rem;
+  font-weight:500;
+  color:var(--candle-soft);
+  margin-bottom:20px;
+  display:block;
+}
+
+.dia__lista{
+  list-style:none;
+  display:flex;
+  flex-direction:column;
+  gap:12px;
+}
+
+.dia__lista li{
+  font-size:0.92rem;
+  font-weight:300;
+  line-height:1.4;
+  color:rgba(246,242,233,0.85);
+  padding-left:16px;
+  position:relative;
+}
+
+.dia__lista li::before{
+  content:"";
+  position:absolute;
+  left:0;
+  top:0.55em;
+  width:5px;
+  height:5px;
+  border-radius:50%;
+  background:var(--sage);
+}
+
+/* segunda-feira tem mais atividades — ganha destaque sutil de fundo
+   pra sinalizar visualmente que é o dia mais movimentado da semana */
+.dia--grande{
+  background:#212F42;
+}
+
+.dia--curto{
+  justify-content:flex-start;
+}
+
+/* =========================================================
+   CABEÇALHO DE PÁGINA INTERNA (usado em atividades.html)
+   ========================================================= */
+.pagina-topo{
+  background:var(--ink);
+  color:var(--ivory);
+  padding:clamp(48px, 8vw, 80px) clamp(20px, 6vw, 72px) clamp(56px, 8vw, 96px);
+}
+
+.pagina-topo__voltar{
+  display:inline-block;
+  font-size:0.88rem;
+  color:rgba(246,242,233,0.7);
+  text-decoration:none;
+  margin-bottom:28px;
+  transition:color 0.25s ease;
+}
+
+.pagina-topo__voltar:hover{
+  color:var(--candle-soft);
+}
+
+.pagina-topo h1{
+  font-family:'Fraunces', serif;
+  font-weight:400;
+  font-size:clamp(2rem, 4vw, 3rem);
+  line-height:1.15;
+  margin-top:16px;
+  max-width:20ch;
+  color:#FFFDF8;
+}
+
+/* =========================================================
+   REUNIÕES PÚBLICAS
+   ========================================================= */
+.reunioes{
+  background:var(--ivory);
+  color:var(--ink);
+  display:grid;
+  grid-template-columns:1fr;
+}
+
+@media(min-width:940px){
+  .reunioes{
+    grid-template-columns:1fr 1fr;
+    min-height:640px;
+  }
+}
+
+.reunioes__foto{
+  min-height:320px;
+}
+
+.reunioes__foto img{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  display:block;
+}
+
+.reunioes__conteudo{
+  padding:clamp(48px, 7vw, 96px) clamp(20px, 6vw, 72px);
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+}
+
+.reunioes__conteudo h2{
+  font-family:'Fraunces', serif;
+  font-weight:400;
+  font-size:clamp(1.9rem, 3.4vw, 2.7rem);
+  margin:14px 0 22px;
+}
+
+.reunioes__conteudo > p{
+  font-size:1.02rem;
+  line-height:1.75;
+  color:rgba(27,42,61,0.78);
+  font-weight:300;
+  max-width:48ch;
+}
+
+.reunioes__dias{
+  display:flex;
+  gap:10px;
+  margin:28px 0;
+}
+
+.tag-dia{
+  padding:8px 18px;
+  border:1px solid rgba(27,42,61,0.25);
+  border-radius:999px;
+  font-size:0.85rem;
+  color:var(--ink);
+}
+
+.reunioes__intro-lista{
+  font-size:0.92rem;
+  color:rgba(27,42,61,0.6);
+  margin-bottom:14px;
+}
+
+.reunioes__lista{
+  list-style:none;
+  display:flex;
+  flex-direction:column;
+  gap:12px;
+}
+
+.reunioes__lista li{
+  font-size:0.98rem;
+  padding-left:20px;
+  position:relative;
+  color:var(--ink);
+}
+
+.reunioes__lista li::before{
+  content:"";
+  position:absolute;
+  left:0;
+  top:0.5em;
+  width:6px;
+  height:6px;
+  border-radius:50%;
+  background:var(--candle);
+}
+
+/* =========================================================
+   APOIO E TRATAMENTO ESPIRITUAL
+   ========================================================= */
+.apoio{
+  position:relative;
+  background:var(--ink);
+  color:var(--ivory);
+  padding:clamp(72px, 10vw, 128px) clamp(20px, 6vw, 72px);
+  overflow:hidden;
+}
+
+.apoio__glow{
+  position:absolute;
+  top:10%;
+  left:50%;
+  width:320px;
+  height:320px;
+  transform:translateX(-50%);
+  border-radius:50%;
+  background:radial-gradient(circle, rgba(232,206,143,0.14) 0%, rgba(232,206,143,0.04) 45%, rgba(232,206,143,0) 72%);
+  pointer-events:none;
+  animation:breathe 8s ease-in-out infinite;
+}
+
+.apoio__cabecalho{
+  position:relative;
+  z-index:1;
+  max-width:640px;
+  margin:0 auto clamp(48px, 7vw, 80px);
+  text-align:center;
+}
+
+.apoio__cabecalho .eyebrow{
+  justify-content:center;
+}
+
+.apoio__cabecalho h2{
+  font-family:'Fraunces', serif;
+  font-weight:400;
+  font-size:clamp(1.8rem, 3.2vw, 2.5rem);
+  line-height:1.25;
+  margin-top:16px;
+  color:#FFFDF8;
+}
+
+.apoio__grade{
+  position:relative;
+  z-index:1;
+  max-width:1040px;
+  margin:0 auto;
+  display:grid;
+  grid-template-columns:1fr;
+  gap:40px;
+}
+
+@media(min-width:760px){
+  .apoio__grade{
+    grid-template-columns:1fr 1px 1fr;
+    gap:56px;
+    align-items:start;
+  }
+}
+
+.apoio__divisor{
+  display:none;
+}
+
+@media(min-width:760px){
+  .apoio__divisor{
+    display:block;
+    background:rgba(246,242,233,0.14);
+    height:100%;
+  }
+}
+
+.apoio__bloco{
+  display:flex;
+  flex-direction:column;
+  gap:16px;
+}
+
+.apoio__titulo{
+  font-family:'Fraunces', serif;
+  font-size:1.3rem;
+  color:var(--candle-soft);
+}
+
+.apoio__bloco p{
+  font-size:0.98rem;
+  line-height:1.75;
+  color:rgba(246,242,233,0.8);
+  font-weight:300;
+}
+
+.apoio__dias{
+  display:flex;
+  gap:10px;
+  flex-wrap:wrap;
+  margin-top:4px;
+}
+
+.tag-dia--escura{
+  border-color:rgba(246,242,233,0.3);
+  color:var(--ivory);
+}
+
+
+/* =========================================================
+   MAIS ATIVIDADES — grid bento (Livraria, Grupos de Estudo,
+   Coral, Evangelização Infantil)
+   ========================================================= */
+.mais{
+  background:var(--ivory);
+  color:var(--ink);
+  padding:clamp(64px, 10vw, 128px) clamp(20px, 6vw, 72px);
+  border-top:1px solid rgba(27,42,61,0.1);
+}
+
+.mais__cabecalho{
+  max-width:640px;
+  margin:0 auto clamp(48px, 7vw, 80px);
+  text-align:center;
+}
+
+.mais__cabecalho .eyebrow{
+  justify-content:center;
+}
+
+.mais__cabecalho h2{
+  font-family:'Fraunces', serif;
+  font-weight:400;
+  font-size:clamp(1.9rem, 3.4vw, 2.6rem);
+  line-height:1.22;
+  margin-top:16px;
+}
+
+.mais__grade{
+  max-width:1160px;
+  margin:0 auto;
+  display:grid;
+  grid-template-columns:1fr;
+  gap:20px;
+}
+
+@media(min-width:760px){
+  .mais__grade{
+    grid-template-columns:repeat(3, 1fr);
+  }
+}
+
+/* card base */
+.card{
+  background:#FFFFFF;
+  border:1px solid rgba(27,42,61,0.08);
+  border-radius:10px;
+  padding:32px 28px;
+  display:flex;
+  flex-direction:column;
+  gap:14px;
+  transition:transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.card:hover{
+  transform:translateY(-4px);
+  box-shadow:0 20px 40px -24px rgba(27,42,61,0.3);
+}
+
+.card__titulo{
+  font-family:'Fraunces', serif;
+  font-size:1.15rem;
+  color:var(--ink);
+}
+
+.card p{
+  font-size:0.94rem;
+  line-height:1.65;
+  color:rgba(27,42,61,0.7);
+  font-weight:300;
+}
+
+.card__tags{
+  display:flex;
+  gap:8px;
+  flex-wrap:wrap;
+  margin-top:auto;
+  padding-top:4px;
+}
+
+.card__tags .tag-dia{
+  font-size:0.78rem;
+  padding:6px 14px;
+}
+
+/* card em destaque — Livraria, ocupa a linha inteira e
+   ganha o número grande como assinatura visual da seção */
+.card--destaque{
+  grid-column:1 / -1;
+  flex-direction:row;
+  align-items:center;
+  justify-content:space-between;
+  gap:32px;
+  background:var(--ink);
+  border-color:var(--ink);
+}
+
+.card--destaque .card__titulo{
+  color:var(--candle-soft);
+}
+
+.card--destaque p{
+  color:rgba(246,242,233,0.78);
+  max-width:44ch;
+}
+
+.card--destaque .card__texto{
+  display:flex;
+  flex-direction:column;
+  gap:10px;
+  flex:1;
+}
+
+.card__estatistica{
+  display:flex;
+  flex-direction:column;
+  align-items:flex-end;
+  text-align:right;
+  flex-shrink:0;
+}
+
+.card__numero{
+  font-family:'Fraunces', serif;
+  font-weight:500;
+  font-size:clamp(2.2rem, 4vw, 3rem);
+  color:#FFFDF8;
+  line-height:1;
+}
+
+.card__legenda{
+  font-size:0.82rem;
+  color:rgba(246,242,233,0.65);
+  max-width:16ch;
+  margin-top:6px;
+}
+
+@media(max-width:600px){
+  .card--destaque{
+    flex-direction:column;
+    align-items:flex-start;
+  }
+  .card__estatistica{
+    align-items:flex-start;
+    text-align:left;
+  }
+}
+
+/* cards com foto — Coral e Evangelização Infantil */
+.card--foto{
+  position:relative;
+  padding:0;
+  min-height:340px;
+  overflow:hidden;
+  color:var(--ivory);
+  border:none;
+}
+
+.card--foto img{
+  position:absolute;
+  inset:0;
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  transition:transform 0.4s ease;
+}
+
+.card--foto:hover img{
+  transform:scale(1.04);
+}
+
+.card__sobreposicao{
+  position:relative;
+  z-index:1;
+  height:100%;
+  display:flex;
+  flex-direction:column;
+  justify-content:flex-end;
+  gap:10px;
+  padding:28px 24px;
+  background:linear-gradient(180deg, rgba(15,22,32,0) 0%, rgba(15,22,32,0.55) 55%, rgba(15,22,32,0.92) 100%);
+}
+
+.card--foto .card__titulo{
+  color:#FFFDF8;
+}
+
+.card--foto p{
+  color:rgba(246,242,233,0.85);
+}
+
+/* =========================================================
+   AÇÕES SOCIAIS E BAZAR — fundo escuro, mesmo sistema de
+   cards da seção "Mais Atividades"
+   ========================================================= */
+.acoes{
+  background:var(--ink);
+  color:var(--ivory);
+  padding:clamp(64px, 10vw, 128px) clamp(20px, 6vw, 72px);
+}
+
+.acoes__cabecalho{
+  max-width:640px;
+  margin:0 auto clamp(48px, 7vw, 80px);
+  text-align:center;
+}
+
+.acoes__cabecalho .eyebrow{
+  justify-content:center;
+}
+
+.acoes__cabecalho h2{
+  font-family:'Fraunces', serif;
+  font-weight:400;
+  font-size:clamp(1.9rem, 3.4vw, 2.6rem);
+  line-height:1.22;
+  margin-top:16px;
+  color:#FFFDF8;
+}
+
+.acoes__grade{
+  max-width:1160px;
+  margin:0 auto;
+  display:grid;
+  grid-template-columns:1fr;
+  gap:20px;
+}
+
+@media(min-width:760px){
+  .acoes__grade{
+    grid-template-columns:repeat(2, 1fr);
+  }
+}
+
+.acoes .card--destaque{
+  grid-column:1 / -1;
+  background:#212F42;
+  border-color:rgba(246,242,233,0.12);
+}
