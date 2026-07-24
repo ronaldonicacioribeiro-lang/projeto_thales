@@ -940,3 +940,218 @@ h1 em{
   background:#212F42;
   border-color:rgba(246,242,233,0.12);
 }
+
+/* =========================================================
+   FAQ — acordeão
+   ========================================================= */
+.faq{
+  background:var(--ink);
+  color:var(--ivory);
+  padding:clamp(64px, 10vw, 128px) clamp(20px, 6vw, 72px);
+}
+
+.faq__cabecalho{
+  max-width:640px;
+  margin:0 auto clamp(40px, 6vw, 64px);
+  text-align:center;
+}
+
+.faq__cabecalho .eyebrow{
+  justify-content:center;
+}
+
+.faq__cabecalho h2{
+  font-family:'Fraunces', serif;
+  font-weight:400;
+  font-size:clamp(1.9rem, 3.4vw, 2.6rem);
+  margin-top:16px;
+  color:#FFFDF8;
+}
+
+.faq__lista{
+  max-width:760px;
+  margin:0 auto;
+  border-top:1px solid rgba(246,242,233,0.14);
+}
+
+.faq__item{
+  border-bottom:1px solid rgba(246,242,233,0.14);
+}
+
+.faq__pergunta{
+  width:100%;
+  background:none;
+  border:none;
+  cursor:pointer;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:20px;
+  padding:24px 4px;
+  font-family:'Work Sans', sans-serif;
+  font-size:1.02rem;
+  font-weight:400;
+  color:var(--ivory);
+  text-align:left;
+  transition:color 0.25s ease;
+}
+
+.faq__pergunta:hover{
+  color:var(--candle-soft);
+}
+
+.faq__icone{
+  position:relative;
+  flex-shrink:0;
+  width:18px;
+  height:18px;
+}
+
+.faq__icone::before,
+.faq__icone::after{
+  content:"";
+  position:absolute;
+  background:var(--candle-soft);
+  border-radius:2px;
+  transition:transform 0.3s ease;
+}
+
+.faq__icone::before{
+  top:50%;
+  left:0;
+  width:100%;
+  height:1.5px;
+  transform:translateY(-50%);
+}
+
+.faq__icone::after{
+  top:0;
+  left:50%;
+  width:1.5px;
+  height:100%;
+  transform:translateX(-50%);
+}
+
+.faq__pergunta[aria-expanded="true"] .faq__icone::after{
+  transform:translateX(-50%) rotate(90deg);
+  opacity:0;
+}
+
+.faq__resposta{
+  max-height:0;
+  overflow:hidden;
+  transition:max-height 0.35s ease;
+}
+
+.faq__resposta p{
+  padding:0 4px 24px;
+  font-size:0.96rem;
+  line-height:1.7;
+  color:rgba(246,242,233,0.75);
+  font-weight:300;
+  max-width:58ch;
+}
+
+
+
+/* =========================================================
+   CONTATO E RODAPÉ
+   ========================================================= */
+.rodape{
+  background:#0F1622;
+  color:rgba(246,242,233,0.75);
+  padding:clamp(56px, 8vw, 96px) clamp(20px, 6vw, 72px) 32px;
+}
+
+.rodape__topo{
+  display:grid;
+  grid-template-columns:1fr;
+  gap:40px;
+  max-width:1160px;
+  margin:0 auto;
+  padding-bottom:48px;
+  border-bottom:1px solid rgba(246,242,233,0.1);
+}
+
+@media(min-width:760px){
+  .rodape__topo{
+    grid-template-columns:1.4fr 1fr 1fr 1fr;
+    gap:32px;
+  }
+}
+
+.rodape__bloco{
+  display:flex;
+  flex-direction:column;
+  gap:12px;
+}
+
+.rodape__marca{
+  color:#FFFDF8;
+  margin-bottom:4px;
+}
+
+.rodape__endereco{
+  font-size:0.92rem;
+  line-height:1.6;
+  font-weight:300;
+}
+
+.rodape__titulo{
+  font-size:0.8rem;
+  letter-spacing:0.08em;
+  text-transform:uppercase;
+  color:var(--candle-soft);
+  margin-bottom:4px;
+}
+
+.rodape__link{
+  font-size:0.92rem;
+  color:rgba(246,242,233,0.75);
+  text-decoration:none;
+  transition:color 0.25s ease;
+  width:fit-content;
+}
+
+.rodape__link:hover{
+  color:var(--candle-soft);
+}
+
+.rodape__texto{
+  font-size:0.92rem;
+  font-weight:300;
+}
+
+.rodape__base{
+  max-width:1160px;
+  margin:0 auto;
+  padding-top:28px;
+  display:flex;
+  flex-direction:column;
+  gap:16px;
+  font-size:0.82rem;
+  color:rgba(246,242,233,0.45);
+}
+
+@media(min-width:760px){
+  .rodape__base{
+    flex-direction:row;
+    justify-content:space-between;
+    align-items:center;
+  }
+}
+
+.rodape__redes{
+  display:flex;
+  gap:20px;
+}
+
+.rodape__redes a{
+  color:rgba(246,242,233,0.55);
+  text-decoration:none;
+  transition:color 0.25s ease;
+}
+
+.rodape__redes a:hover{
+  color:var(--candle-soft);
+}
