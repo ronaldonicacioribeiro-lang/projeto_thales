@@ -105,6 +105,7 @@ body{
 }
 
 .nav__flame{
+  flex-shrink:0;
   width:9px; height:9px;
   border-radius:50%;
   background:var(--candle-soft);
@@ -700,6 +701,12 @@ h1 em{
   font-weight:300;
 }
 
+.apoio__bloco a{
+  color:var(--candle-soft);
+  text-underline-offset:3px;
+  white-space:nowrap;
+}
+
 .apoio__dias{
   display:flex;
   gap:10px;
@@ -943,8 +950,23 @@ h1 em{
 
 @media(min-width:760px){
   .acoes__grade{
-    grid-template-columns:repeat(2, 1fr);
+    grid-template-columns:repeat(3, 1fr);
   }
+}
+
+/* card sem foto sobre o fundo escuro — Peregrinação */
+.card--escuro{
+  background:#212F42;
+  border-color:rgba(246,242,233,0.12);
+  justify-content:flex-end;
+}
+
+.card--escuro .card__titulo{
+  color:#FFFDF8;
+}
+
+.card--escuro p{
+  color:rgba(246,242,233,0.78);
 }
 
 .acoes .card--destaque{
