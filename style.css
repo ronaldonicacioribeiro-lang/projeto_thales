@@ -1236,3 +1236,15 @@ h1 em{
   background:#212F42;
   transform:translateY(-1px);
 }
+/* Separador entre Ações Sociais e FAQ (ambas escuras) */
+.acoes + .faq{
+  border-top:1px solid rgba(246,242,233,0.12);
+}
+
+/* Espaçamento após unir "Todos são bem-vindos" às Reuniões Públicas */
+.reunioes__conteudo > p + p{
+  margin-top:16px;
+}
+.reunioes__conteudo > .reunioes__intro-lista{
+  margin-top:28px;
+}
